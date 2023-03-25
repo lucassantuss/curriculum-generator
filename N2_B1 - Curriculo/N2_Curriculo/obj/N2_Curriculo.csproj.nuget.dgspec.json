@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lucas\\Desktop\\N2_B1 - Curriculo\\N2_Curriculo\\N2_Curriculo.csproj": {}
+    "E:\\GITHUB\\N2_Curriculo\\N2_B1 - Curriculo\\N2_Curriculo\\N2_Curriculo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lucas\\Desktop\\N2_B1 - Curriculo\\N2_Curriculo\\N2_Curriculo.csproj": {
+    "E:\\GITHUB\\N2_Curriculo\\N2_B1 - Curriculo\\N2_Curriculo\\N2_Curriculo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lucas\\Desktop\\N2_B1 - Curriculo\\N2_Curriculo\\N2_Curriculo.csproj",
+        "projectUniqueName": "E:\\GITHUB\\N2_Curriculo\\N2_B1 - Curriculo\\N2_Curriculo\\N2_Curriculo.csproj",
         "projectName": "N2_Curriculo",
-        "projectPath": "C:\\Users\\Lucas\\Desktop\\N2_B1 - Curriculo\\N2_Curriculo\\N2_Curriculo.csproj",
+        "projectPath": "E:\\GITHUB\\N2_Curriculo\\N2_B1 - Curriculo\\N2_Curriculo\\N2_Curriculo.csproj",
         "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lucas\\Desktop\\N2_B1 - Curriculo\\N2_Curriculo\\obj\\",
+        "outputPath": "E:\\GITHUB\\N2_Curriculo\\N2_B1 - Curriculo\\N2_Curriculo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",

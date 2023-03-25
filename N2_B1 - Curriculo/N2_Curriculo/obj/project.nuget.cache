@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Hl/Ptq7ZKZiQwrRd/zoFQbjQs0s1oJfub1IFY7muFT1oYamkz6ZJTw+eLXTwm4kAK8sjsilJSmbNfCwJrqItgA==",
+  "dgSpecHash": "E7lb2y+ZanjkCMehmJlqNNcLOnLjyqB8d9gR0G19+oGb3cfhuswxnGs/4TTxdcJAqjBAIIGOwpF+exxFGRiZ6A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lucas\\Desktop\\N2_B1 - Curriculo\\N2_Curriculo\\N2_Curriculo.csproj",
+  "projectFilePath": "E:\\GITHUB\\N2_Curriculo\\N2_B1 - Curriculo\\N2_Curriculo\\N2_Curriculo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lucas\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\3.1.31\\microsoft.aspnetcore.mvc.razor.extensions.3.1.31.nupkg.sha512",
     "C:\\Users\\Lucas\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\3.1.31\\microsoft.aspnetcore.mvc.razor.runtimecompilation.3.1.31.nupkg.sha512",

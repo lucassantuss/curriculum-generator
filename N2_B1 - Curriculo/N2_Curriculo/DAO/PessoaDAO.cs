@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using N2_Curriculo.Models;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,45 +10,50 @@ namespace N2_Curriculo.DAO
 {
     public class PessoaDAO
     {
-        private SqlParameter[] CriaParametros(JogoViewModel jogo)
+        private SqlParameter[] CriaParametros(PessoaViewModel pessoa)
         {
             SqlParameter[] p = new SqlParameter[5];
-            p[0] = new SqlParameter("id", jogo.id);
-            p[1] = new SqlParameter("descricao", jogo.descricao);
-            p[2] = new SqlParameter("valor_locacao", jogo.valor_locacao);
-            p[3] = new SqlParameter("data_aquisicao", jogo.data_aquisicao);
-            p[4] = new SqlParameter(nameof(jogo.categoriaID), jogo.categoriaID);
+            p[0] = new SqlParameter("id", pessoa.id);
+            p[1] = new SqlParameter("nome", pessoa.nome);
+            p[2] = new SqlParameter("cpf", pessoa.cpf);
+            p[3] = new SqlParameter("endereco", pessoa.endereco);
+            p[4] = new SqlParameter("telefone", pessoa.telefone);
+            p[5] = new SqlParameter("email", pessoa.email);
+            p[6] = new SqlParameter("pretensao_salarial", pessoa.pretensao_salarial);
+            p[7] = new SqlParameter("cargo_pretendido", pessoa.cargo_pretendido);
+
             return p;
         }
 
-        public void Inserir(JogoViewModel jogo)
+        public void Inserir(PessoaViewModel pessoa)
         {
             string sql =
-            "insert into jogos(id, descricao, valor_locacao, " +
-            "data_aquisicao, categoriaID)" +
-            "values (@id , @descricao, @valor_locacao, " +
-            "@data_aquisicao, @categoriaID )";
-            HelperDAO.ExecutaSQL(sql, CriaParametros(jogo));
+            "insert into dados_pessoais " +
+            "values (@nome, @cpf, @endereco, @telefone, " +
+            "@email, @pretensao_salarial, @cargo_pretendido)";
+            HelperDAO.ExecutaSQL(sql, CriaParametros(pessoa));
         }
 
-        public void Alterar(JogoViewModel jogo)
+        public void Alterar(PessoaViewModel pessoa)
         {
             string sql =
-            "update jogos set descricao = @descricao, valor_locacao = @valor_locacao, " +
-            "data_aquisicao=@data_aquisicao, categoriaID = @categoriaID " +
+            "update dados_pessoais set nome = @nome, cpf = @cpf, " +
+            "endereco = @endereco, telefone = @telefone, " +
+            "email = @email, pretensao_salarial = @pretensao_salarial, " +
+            "cargo_pretendido = @cargo_pretendido " +
             "where id = @id";
-            HelperDAO.ExecutaSQL(sql, CriaParametros(jogo));
+            HelperDAO.ExecutaSQL(sql, CriaParametros(pessoa));
         }
 
         public void Excluir(int id)
         {
-            string sql = "delete jogos where id = " + id;
+            string sql = "delete dados_pessoais where id = " + id;
             HelperDAO.ExecutaSQL(sql, null);
         }
 
-        public JogoViewModel Consulta(int id)
+        public PessoaViewModel Consulta(int id)
         {
-            string sql = "select * from jogos where id =" + id;
+            string sql = "select * from dados_pessoais where id = " + id;
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
 
             if (tabela.Rows.Count == 0)
@@ -56,24 +62,29 @@ namespace N2_Curriculo.DAO
                 return MontaJogo(tabela.Rows[0]);
         }
 
-        private JogoViewModel MontaJogo(DataRow registro)
+        private PessoaViewModel MontaJogo(DataRow registro)
         {
-            JogoViewModel j = new JogoViewModel();
-            j.id = Convert.ToInt32(registro["id"]);
-            j.categoriaID = Convert.ToInt32(registro["categoriaID"]);
-            j.valor_locacao = Convert.ToDouble(registro["valor_locacao"]);
-            j.descricao = registro["descricao"].ToString();
-            j.data_aquisicao = Convert.ToDateTime(registro["data_aquisicao"]);
-            return j;
+            PessoaViewModel p = new PessoaViewModel();
+            p.id = Convert.ToInt32(registro["id"]);
+            p.nome = registro["nome"].ToString();
+            p.cpf = registro["cpf"].ToString();
+            p.endereco = registro["endereco"].ToString();
+            p.telefone = registro["telefone"].ToString();
+            p.email = registro["email"].ToString();
+            p.pretensao_salarial = Convert.ToDouble(registro["pretensao_salarial"]);
+            p.cargo_pretendido = registro["cargo_pretendido"].ToString();
+
+            return p;
         }
 
-        public List<JogoViewModel> Listagem()
+        public List<PessoaViewModel> Listagem()
         {
-            List<JogoViewModel> lista = new List<JogoViewModel>();
-            string sql = "select * from jogos order by descricao";
+            List<PessoaViewModel> lista = new List<PessoaViewModel>();
+            string sql = "select * from dados_pessoais order by id";
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             foreach (DataRow registro in tabela.Rows)
                 lista.Add(MontaJogo(registro));
+
             return lista;
         }
     }
