@@ -12,7 +12,7 @@ namespace N2_Curriculo.DAO
     {
         private SqlParameter[] CriaParametros(FormacaoViewModel formacao)
         {
-            SqlParameter[] p = new SqlParameter[5];
+            SqlParameter[] p = new SqlParameter[6];
             p[0] = new SqlParameter("id", formacao.id);
             p[1] = new SqlParameter("id_dados_pessoais", formacao.id_dados_pessoais);
             p[2] = new SqlParameter("instituicao", formacao.instituicao);
@@ -77,15 +77,15 @@ namespace N2_Curriculo.DAO
             f.instituicao = registro["instituicao"].ToString();
             f.curso = registro["curso"].ToString();
             f.situacao = registro["situacao"].ToString();
-            f.data_conclusao = Convert.ToDateTime(registro["data_conclusao"]);
+            //f.data_conclusao = Convert.ToDateTime(registro["data_conclusao"]);
 
             return f;
         }
 
-        public List<FormacaoViewModel> Listagem()
+        public List<FormacaoViewModel> Listagem(int id)
         {
             List<FormacaoViewModel> lista = new List<FormacaoViewModel>();
-            string sql = "select * from formacao_academica order by id";
+            string sql = "select * from formacao_academica where id_dados_pessoais = " + id + " order by id";
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             foreach (DataRow registro in tabela.Rows)
                 lista.Add(MontaFormacao(registro));

@@ -53,9 +53,25 @@ namespace N2_Curriculo.Controllers
                 IdiomaDAO i_dao = new IdiomaDAO();
 
                 PessoaViewModel pessoa = p_dao.Consulta(id);
-                //pessoa.experiencia_profissional[0] = e_dao.ConsultaPessoa(id);
-                //pessoa.formacao_academica[0] = f_dao.ConsultaPessoa(id);
-                //pessoa.idioma[0] = i_dao.ConsultaPessoa(id);
+                pessoa.experiencia_profissional = new List<ExperienciaViewModel>();
+                pessoa.formacao_academica = new List<FormacaoViewModel>();
+                pessoa.idioma = new List<IdiomaViewModel>();
+
+                var listaExperiencia = e_dao.Listagem(id);
+                var listaFormacao = f_dao.Listagem(id);
+                var listaIdioma = i_dao.Listagem(id);
+
+                if (listaExperiencia != null) foreach (var item in listaExperiencia) {
+                    pessoa.experiencia_profissional.Add(item);
+                }
+                if (listaFormacao != null) foreach (var item in listaFormacao)
+                {
+                    pessoa.formacao_academica.Add(item);
+                }
+                if (listaIdioma != null) foreach (var item in listaIdioma)
+                {
+                    pessoa.idioma.Add(item);
+                }
 
                 if (pessoa == null)
                     return RedirectToAction("index");

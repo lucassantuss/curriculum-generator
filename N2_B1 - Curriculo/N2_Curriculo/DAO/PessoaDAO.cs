@@ -12,7 +12,7 @@ namespace N2_Curriculo.DAO
     {
         private SqlParameter[] CriaParametros(PessoaViewModel pessoa)
         {
-            SqlParameter[] p = new SqlParameter[5];
+            SqlParameter[] p = new SqlParameter[8];
             p[0] = new SqlParameter("id", pessoa.id);
             p[1] = new SqlParameter("nome", pessoa.nome);
             p[2] = new SqlParameter("cpf", pessoa.cpf);

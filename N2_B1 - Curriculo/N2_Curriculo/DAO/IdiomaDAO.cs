@@ -12,7 +12,7 @@ namespace N2_Curriculo.DAO
     {
         private SqlParameter[] CriaParametros(IdiomaViewModel idioma)
         {
-            SqlParameter[] p = new SqlParameter[5];
+            SqlParameter[] p = new SqlParameter[4];
             p[0] = new SqlParameter("id", idioma.id);
             p[1] = new SqlParameter("id_dados_pessoais", idioma.id_dados_pessoais);
             p[2] = new SqlParameter("idioma", idioma.idioma);
@@ -77,10 +77,10 @@ namespace N2_Curriculo.DAO
             return i;
         }
 
-        public List<IdiomaViewModel> Listagem()
+        public List<IdiomaViewModel> Listagem(int id)
         {
             List<IdiomaViewModel> lista = new List<IdiomaViewModel>();
-            string sql = "select * from idiomas order by id";
+            string sql = "select * from idiomas where id_dados_pessoais = " + id + " order by id";
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             foreach (DataRow registro in tabela.Rows)
                 lista.Add(MontaIdioma(registro));

@@ -77,18 +77,19 @@ namespace N2_Curriculo.DAO
             e.empresa = registro["empresa"].ToString();
             e.cargo = registro["cargo"].ToString();
             e.data_inicio = Convert.ToDateTime(registro["data_inicio"]);
-            e.data_fim = Convert.ToDateTime(registro["data_fim"]);
+            //e.data_fim = Convert.ToDateTime(registro["data_fim"]);
 
             return e;
         }
 
-        public List<ExperienciaViewModel> Listagem()
+        public List<ExperienciaViewModel> Listagem(int id)
         {
             List<ExperienciaViewModel> lista = new List<ExperienciaViewModel>();
-            string sql = "select * from experiencia_profissional order by descricao";
+            string sql = "select * from experiencia_profissional where id_dados_pessoais = " + id + " order by id";
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             foreach (DataRow registro in tabela.Rows)
                 lista.Add(MontaExperiencia(registro));
+
             return lista;
         }
     }
