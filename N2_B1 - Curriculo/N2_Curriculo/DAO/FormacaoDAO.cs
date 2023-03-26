@@ -58,6 +58,17 @@ namespace N2_Curriculo.DAO
                 return MontaFormacao(tabela.Rows[0]);
         }
 
+        public FormacaoViewModel ConsultaPessoa(int id)
+        {
+            string sql = "select * from formacao_academica where id_dados_pessoais = " + id;
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+
+            if (tabela.Rows.Count == 0)
+                return null;
+            else
+                return MontaFormacao(tabela.Rows[0]);
+        }
+
         private FormacaoViewModel MontaFormacao(DataRow registro)
         {
             FormacaoViewModel f = new FormacaoViewModel();

@@ -59,10 +59,10 @@ namespace N2_Curriculo.DAO
             if (tabela.Rows.Count == 0)
                 return null;
             else
-                return MontaJogo(tabela.Rows[0]);
+                return MontaPessoa(tabela.Rows[0]);
         }
 
-        private PessoaViewModel MontaJogo(DataRow registro)
+        private PessoaViewModel MontaPessoa(DataRow registro)
         {
             PessoaViewModel p = new PessoaViewModel();
             p.id = Convert.ToInt32(registro["id"]);
@@ -83,7 +83,7 @@ namespace N2_Curriculo.DAO
             string sql = "select * from dados_pessoais order by id";
             DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
             foreach (DataRow registro in tabela.Rows)
-                lista.Add(MontaJogo(registro));
+                lista.Add(MontaPessoa(registro));
 
             return lista;
         }

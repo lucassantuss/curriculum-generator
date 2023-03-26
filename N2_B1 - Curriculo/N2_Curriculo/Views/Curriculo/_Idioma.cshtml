@@ -1,0 +1,20 @@
+﻿@model IdiomaViewModel
+@{
+    ViewData["Title"] = "Idioma";
+}
+
+<h1>Idioma</h1>
+<br />
+<form action="SalvarIdioma" method="post">
+    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+
+    <label for="idioma" class="control-label">Idioma</label>
+    <input type="text" Name="idioma" value="@Model.idioma" class="form-control"/>
+    <br />
+    <label for="nivel" class="control-label">Nível</label>
+    <input type="text" Name="nivel" value="@Model.nivel" class="form-control"/>
+    <br />
+    <br />
+    <input type="submit" value="Salvar" class="btn btn-success" />
+    <br />
+</form>

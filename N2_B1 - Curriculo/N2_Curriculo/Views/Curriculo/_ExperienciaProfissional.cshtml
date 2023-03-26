@@ -1,0 +1,26 @@
+﻿@model ExperienciaViewModel
+@{
+    ViewData["Title"] = "Experiência Profissional";
+}
+
+<h1>Experiência Profissional</h1>
+<br />
+<form action="SalvarExperiencia" method="post" class="col-md-6">
+    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+
+    <label for="empresa" class="control-label">Empresa</label>
+    <input type="text" Name="empresa" value="@Model.empresa" class="form-control"/>
+    <br />
+    <label for="cargo" class="control-label">Cargo</label>
+    <input type="text" Name="cargo" value="@Model.cargo" class="form-control"/>
+    <br />
+    <label for="data_inicio" class="control-label">Data de Inicio</label>
+    <input type="date" Name="data_inicio" value="@Model.data_inicio.ToString("yyyy-MM-dd")" class="form-control"/>
+    <br />
+    <label for="data_fim" class="control-label">Data Final</label>
+    <input type="date" Name="data_fim" value="@Model.data_fim.ToString("yyyy-MM-dd")" class="form-control"/>
+    <br />
+    <br />
+    <input type="submit" value="Salvar" class="btn btn-success" />
+    <br />
+</form>

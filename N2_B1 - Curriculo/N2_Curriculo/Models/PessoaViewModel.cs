@@ -15,8 +15,8 @@ namespace N2_Curriculo.Models
         public string email { get; set; }
         public double pretensao_salarial { get; set; }
         public string cargo_pretendido { get; set; }
-        public ExperienciaViewModel experiencia_profissional { get; set; }
-        public FormacaoViewModel formacao_academica { get; set; }
-        public IdiomaViewModel idioma { get; set; }
+        public List<ExperienciaViewModel> experiencia_profissional { get; set; }
+        public List<FormacaoViewModel> formacao_academica { get; set; }
+        public List<IdiomaViewModel> idioma { get; set; }
     }
 }

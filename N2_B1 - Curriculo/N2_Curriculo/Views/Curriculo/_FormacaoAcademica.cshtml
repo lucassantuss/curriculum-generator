@@ -1,0 +1,26 @@
+﻿@model FormacaoViewModel
+@{
+    ViewData["Title"] = "Formação Acadêmica";
+}
+
+<h1>Formação Acadêmica</h1>
+<br />
+<form action="SalvarFormacao" method="post">
+    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+
+    <label for="instituicao" class="control-label">Instituição</label>
+    <input type="text" Name="instituicao" value="@Model.instituicao" class="form-control"/>
+    <br />
+    <label for="curso" class="control-label">Curso</label>
+    <input type="text" Name="curso" value="@Model.curso" class="form-control"/>
+    <br />
+    <label for="situacao" class="control-label">Situação</label>
+    <input type="text" Name="situacao" value="@Model.situacao" class="form-control"/>
+    <br />
+    <label for="data_conclusao" class="control-label">Data de Conclusão</label>
+    <input type="date" Name="data_conclusao" value="@Model.data_conclusao.ToString("yyyy-MM-dd")" class="form-control"/>
+    <br />
+    <br />
+    <input type="submit" value="Salvar" class="btn btn-success"/>
+    <br />
+</form>

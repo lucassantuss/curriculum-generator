@@ -58,6 +58,17 @@ namespace N2_Curriculo.DAO
                 return MontaExperiencia(tabela.Rows[0]);
         }
 
+        public ExperienciaViewModel ConsultaPessoa(int id)
+        {
+            string sql = "select * from experiencia_profissional where id_dados_pessoais = " + id;
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+
+            if (tabela.Rows.Count == 0)
+                return null;
+            else
+                return MontaExperiencia(tabela.Rows[0]);
+        }
+
         private ExperienciaViewModel MontaExperiencia(DataRow registro)
         {
             ExperienciaViewModel e = new ExperienciaViewModel();

@@ -55,6 +55,17 @@ namespace N2_Curriculo.DAO
                 return MontaIdioma(tabela.Rows[0]);
         }
 
+        public IdiomaViewModel ConsultaPessoa(int id)
+        {
+            string sql = "select * from idiomas where id_dados_pessoais = " + id;
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+
+            if (tabela.Rows.Count == 0)
+                return null;
+            else
+                return MontaIdioma(tabela.Rows[0]);
+        }
+
         private IdiomaViewModel MontaIdioma(DataRow registro)
         {
             IdiomaViewModel i = new IdiomaViewModel();
