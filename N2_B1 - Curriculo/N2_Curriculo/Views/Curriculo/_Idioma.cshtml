@@ -1,13 +1,17 @@
 ﻿@model IdiomaViewModel
 
+<link rel="stylesheet" href="~/css/Curriculo/modal.css" />
+
 <form action="SalvarIdioma" method="post">
     <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+    <input type="hidden" name="id" value="@Model.id" />
+    <input type="hidden" name="id_dados_pessoais" value="@Model.id_dados_pessoais" />
 
-    <label for="idioma" class="control-label">Idioma</label>
-    <input type="text" Name="idioma" value="@Model.idioma" class="form-control"/>
+    <label for="idioma" class="control-label">Idioma</label><span id="obg"> *</span>
+    <input type="text" Name="idioma" value="@Model.idioma" class="form-control" required maxlength="50"/>
     <br />
-    <label for="nivel" class="control-label">Nível</label>
-    <input type="text" Name="nivel" value="@Model.nivel" class="form-control"/>
+    <label for="nivel" class="control-label">Nível</label><span id="obg"> *</span>
+    <input type="text" Name="nivel" value="@Model.nivel" class="form-control" required maxlength="20"/>
     <br />
     <br />
     <input type="submit" value="Salvar" class="btn btn-success" />

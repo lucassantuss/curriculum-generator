@@ -1,19 +1,23 @@
 ﻿@model ExperienciaViewModel
 
-<form action="SalvarExperiencia" method="post" class="col-md-6">
-    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+<link rel="stylesheet" href="~/css/Curriculo/modal.css" />
 
-    <label for="empresa" class="control-label">Empresa</label>
-    <input type="text" Name="empresa" value="@Model.empresa" class="form-control"/>
+<form action="SalvarExperiencia" class="col-md-6">
+    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+    <input type="hidden" name="id" value="@Model.id" />
+    <input type="hidden" name="id_dados_pessoais" value="@Model.id_dados_pessoais" />
+
+    <label for="empresa" class="control-label">Empresa</label><span id="obg"> *</span>
+    <input type="text" Name="empresa" value="@Model.empresa" class="form-control" required maxlength="100"/>
     <br />
-    <label for="cargo" class="control-label">Cargo</label>
-    <input type="text" Name="cargo" value="@Model.cargo" class="form-control"/>
+    <label for="cargo" class="control-label">Cargo</label><span id="obg"> *</span>
+    <input type="text" Name="cargo" value="@Model.cargo" class="form-control" required maxlength="50"/>
     <br />
-    <label for="data_inicio" class="control-label">Data de Inicio</label>
-    <input type="date" Name="data_inicio" value="@Model.data_inicio.ToString("yyyy-MM-dd")" class="form-control"/>
+    <label for="data_inicio" class="control-label">Data de Inicio</label><span id="obg"> *</span>
+    <input type="date" Name="data_inicio" value="@Model.data_inicio.ToString("yyyy-MM-dd")" class="form-control" required />
     <br />
-    <label for="data_fim" class="control-label">Data Final</label>
-    <input type="date" Name="data_fim" value="@Model.data_fim.ToString("yyyy-MM-dd")" class="form-control"/>
+    <label for="data_fim" class="control-label">Data Final</label><span id="obg"> *</span>
+    <input type="date" Name="data_fim" value="@Model.data_fim.ToString("yyyy-MM-dd")" class="form-control" required/>
     <br />
     <br />
     <input type="submit" value="Salvar" class="btn btn-success" />

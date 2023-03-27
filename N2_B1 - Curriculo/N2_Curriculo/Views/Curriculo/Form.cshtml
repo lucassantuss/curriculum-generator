@@ -3,254 +3,147 @@
     ViewData["Title"] = "Currículo";
 }
 
+<link rel="stylesheet" href="~/css/Curriculo/modal.css" />
+<script src="~/js/Curriculo/form.js"></script>
+
+<br />
+<br />
 <form action="Salvar" method="post">
-    <h1>Currículo</h1>
+    <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+    <input type="hidden" name="id" value="@Model.id" />
+
+    <h1><b>Currículo</b></h1>
     <br />
     <h2>Dados pessoais</h2>
     <br />
-    <label for="nome" class="control-label">Nome</label>
-    <input type="text" Name="nome" value="@Model.nome" class="form-control col-md-6" />
+    <label for="nome" class="control-label">Nome</label><span id="obg"> *</span>
+    <input type="text" Name="nome" value="@Model.nome" class="form-control col-md-6" required maxlength="100"/>
     <br />
-    <label for="cpf" class="control-label">CPF</label>
-    <input type="text" Name="cpf" value="@Model.cpf" class="form-control col-md-6" />
+    <label for="cpf" class="control-label">CPF</label><span id="obg"> *</span>
+    <input type="text" Name="cpf" value="@Model.cpf" class="form-control col-md-6" required oninput="this.value = mascaraCPF(this.value)" maxlength="14"/>
     <br />
-    <label for="endereco" class="control-label">Endereço</label>
-    <input type="text" Name="endereco" value="@Model.endereco" class="form-control col-md-6" />
+    <label for="endereco" class="control-label">Endereço</label><span id="obg"> *</span>
+    <input type="text" Name="endereco" value="@Model.endereco" class="form-control col-md-6" required maxlength="100"/>
     <br />
-    <label for="telefone" class="control-label">Telefone</label>
-    <input type="text" Name="telefone" value="@Model.telefone" class="form-control col-md-6" />
+    <label for="telefone" class="control-label">Telefone</label><span id="obg"> *</span>
+    <input type="text" Name="telefone" value="@Model.telefone" class="form-control col-md-6" required maxlength="15"/>
     <br />
-    <label for="email" class="control-label">E-mail</label>
-    <input type="text" Name="email" value="@Model.email" class="form-control col-md-6" />
+    <label for="email" class="control-label">E-mail</label><span id="obg"> *</span>
+    <input type="text" Name="email" value="@Model.email" class="form-control col-md-6" required maxlength="50"/>
     <br />
-    <label for="pretensao_salarial" class="control-label">Pretensão salarial</label>
-    <input type="number" Name="pretensao_salarial" value="@Model.pretensao_salarial" class="form-control col-md-6" />
+    <label for="pretensao_salarial" class="control-label">Pretensão salarial</label><span id="obg"> *</span>
+    <input type="number" Name="pretensao_salarial" value="@Model.pretensao_salarial" class="form-control col-md-6" required/>
     <br />
-    <label for="cargo_pretendido" class="control-label">Cargo pretendido</label>
-    <input type="text" Name="cargo_pretendido" value="@Model.cargo_pretendido" class="form-control col-md-6" />
-    <br />
-    <br />
-
-    <h2>Formação Acadêmica</h2>
-    <br />
-    <table class="table table-responsive table-striped">
-        <tr>
-            <th>Instituição</th>
-            <th>Curso</th>
-            <th>Situação</th>
-            <th>Data de Conclusão</th>
-            <th>Ações</th>
-        </tr>
-        @if (Model.formacao_academica != null) foreach (FormacaoViewModel f in Model.formacao_academica)
-            {
-            <tr>
-                <td>@f.instituicao</td>
-                <td>@f.curso</td>
-                <td>@f.situacao</td>
-                <td>@f.data_conclusao.ToString("yyyy-MM-dd")</td>
-                <td>
-                    <a href="javascript:editarFormacao(@f.id)" class="btn btn-info">Editar</a>
-                    <a href="javascript:apagarFormacao(@f.id)" class="btn btn-danger">Apagar</a>
-                </td>
-            </tr>
-            }
-    </table>
-    <a href="javascript:modalFormacao()" class="btn btn-primary">Adicionar</a>
+    <label for="cargo_pretendido" class="control-label">Cargo pretendido</label><span id="obg"> *</span>
+    <input type="text" Name="cargo_pretendido" value="@Model.cargo_pretendido" class="form-control col-md-6" required maxlength="50"/>
     <br />
     <br />
-    <br />
-
-    <h2>Experiências Profissionais</h2>
-    <br />
-    <table class="table table-responsive table-striped">
-        <tr>
-            <th>Empresa</th>
-            <th>Cargo</th>
-            <th>Data de Início</th>
-            <th>Data Final</th>
-            <th>Ações</th>
-        </tr>
-        @if (Model.experiencia_profissional != null) foreach (ExperienciaViewModel e in Model.experiencia_profissional)
-            {
-                <tr>
-                    <td>@e.empresa</td>
-                    <td>@e.cargo</td>
-                    <td>@e.data_inicio.ToString("yyyy-MM-dd")</td>
-                    <td>@e.data_fim.ToString("yyyy-MM-dd")</td>
-                    <td>
-                        <a href="javascript:editarExperiencia(@e.id)" class="btn btn-info">Editar</a>
-                        <a href="javascript:apagarExperiencia(@e.id)" class="btn btn-danger">Apagar</a>
-                    </td>
-                </tr>
-            }
-    </table>
-    <a href="javascript:modalExperiencia()" class="btn btn-primary">Adicionar</a>
-    <br />
-    <br />
-    <br />
-
-    <h2>Idiomas</h2>
-    <br />
-    <table class="table table-responsive table-striped">
-        <tr>
-            <th>Idioma</th>
-            <th>Nível</th>
-            <th>Ações</th>
-        </tr>
-        @if (Model.idioma != null) foreach (IdiomaViewModel i in Model.idioma)
-            {
-                <tr>
-                    <td>@i.idioma</td>
-                    <td>@i.nivel</td>
-                    <td>
-                        <a href="javascript:editarIdioma(@i.id)" class="btn btn-info">Editar</a>
-                        <a href="javascript:apagarIdioma(@i.id)" class="btn btn-danger">Apagar</a>
-                    </td>
-                </tr>
-            }
-    </table>
-    <a href="javascript:modalIdioma()" class="btn btn-primary">Adicionar</a>
-    <br />
-    <br />
-    <br />
-
     <input type="submit" value="Salvar dados" class="btn btn-success" />
     <br />
     <br />
-
-    <div class="modal t-modal warning animated bounceInUp" id="modal_validacao">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title" id="titulo-modal"></h2>
-                    <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="modal-body">
-
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 </form>
 
-<script>
-    function apagarExperiencia(id) {
-        if (confirm('Confirma a exclusão da experiência profissional selecionada?'))
-            location.href = 'curriculo/DeleteExperiencia?id=' + id;
+@{
+    if (ViewBag.Operacao == "A")
+    {
+        <h2>Formação Acadêmica</h2>
+        <br />
+        <table class="table table-responsive table-striped">
+            <tr>
+                <th>Instituição</th>
+                <th>Curso</th>
+                <th>Situação</th>
+                <th>Data de Conclusão</th>
+                <th>Ações</th>
+            </tr>
+            @if (Model.formacao_academica != null) foreach (FormacaoViewModel f in Model.formacao_academica)
+                {
+                    <tr>
+                        <td>@f.instituicao</td>
+                        <td>@f.curso</td>
+                        <td>@f.situacao</td>
+                        <td>@f.data_conclusao.ToString("yyyy-MM-dd")</td>
+                        <td>
+                            <a href="javascript:editarFormacao(@f.id)" class="btn btn-info">Editar</a>
+                            <a href="javascript:apagarFormacao(@f.id)" class="btn btn-danger">Apagar</a>
+                        </td>
+                    </tr>
+                }
+        </table>
+        <a href="javascript:modalFormacao(@Model.id)" class="btn btn-primary">Adicionar</a>
+        <br />
+        <br />
+        <br />
+
+        <h2>Experiências Profissionais</h2>
+        <br />
+        <table class="table table-responsive table-striped">
+            <tr>
+                <th>Empresa</th>
+                <th>Cargo</th>
+                <th>Data de Início</th>
+                <th>Data Final</th>
+                <th>Ações</th>
+            </tr>
+            @if (Model.experiencia_profissional != null) foreach (ExperienciaViewModel e in Model.experiencia_profissional)
+                {
+                    <tr>
+                        <td>@e.empresa</td>
+                        <td>@e.cargo</td>
+                        <td>@e.data_inicio.ToString("yyyy-MM-dd")</td>
+                        <td>@e.data_fim.ToString("yyyy-MM-dd")</td>
+                        <td>
+                            <a href="javascript:editarExperiencia(@e.id)" class="btn btn-info">Editar</a>
+                            <a href="javascript:apagarExperiencia(@e.id)" class="btn btn-danger">Apagar</a>
+                        </td>
+                    </tr>
+                }
+        </table>
+        <a href="javascript:modalExperiencia(@Model.id)" class="btn btn-primary">Adicionar</a>
+        <br />
+        <br />
+        <br />
+
+        <h2>Idiomas</h2>
+        <br />
+        <table class="table table-responsive table-striped">
+            <tr>
+                <th>Idioma</th>
+                <th>Nível</th>
+                <th>Ações</th>
+            </tr>
+            @if (Model.idioma != null) foreach (IdiomaViewModel i in Model.idioma)
+                {
+                    <tr>
+                        <td>@i.idioma</td>
+                        <td>@i.nivel</td>
+                        <td>
+                            <a href="javascript:editarIdioma(@i.id)" class="btn btn-info">Editar</a>
+                            <a href="javascript:apagarIdioma(@i.id)" class="btn btn-danger">Apagar</a>
+                        </td>
+                    </tr>
+                }
+        </table>
+        <a href="javascript:modalIdioma(@Model.id)" class="btn btn-primary">Adicionar</a>
+        <br />
+        <br />
+
+        <div class="modal" id="modal_validacao">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="titulo-modal"></h2>
+                        <button type="button" class="close btn" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     }
-
-    function apagarFormacao(id) {
-        if (confirm('Confirma a exclusão da formação acadêmica selecionada?'))
-            location.href = 'curriculo/DeleteFormacao?id=' + id;
-    }
-
-    function apagarIdioma(id) {
-        if (confirm('Confirma a exclusão do idioma selecionado?'))
-            location.href = 'curriculo/DeleteIdioma?id=' + id;
-    }
-
-    function modalExperiencia() {
-
-        $.ajax({
-            url: "/Curriculo/CreateExperiencia",
-            dataType: 'html',
-            beforeSend: function () {
-
-            },
-            success: function (data) {
-
-                $('#modal-body').html(data);
-                $('#modal_validacao').modal('show');
-                document.getElementById("titulo-modal").innerHTML = 'Experiência Profissional';
-            }
-        });
-    }
-
-    function modalFormacao() {
-
-        $.ajax({
-            url: "/Curriculo/CreateFormacao",
-            dataType: 'html',
-            beforeSend: function () {
-
-            },
-            success: function (data) {
-
-                $('#modal-body').html(data);
-                $('#modal_validacao').modal('show');
-                document.getElementById("titulo-modal").innerHTML = 'Formação Acadêmica';
-            }
-        });
-    }
-
-    function modalIdioma() {
-
-        $.ajax({
-            url: "/Curriculo/CreateIdioma",
-            dataType: 'html',
-            beforeSend: function () {
-
-            },
-            success: function (data) {
-
-                $('#modal-body').html(data);
-                $('#modal_validacao').modal('show');
-                document.getElementById("titulo-modal").innerHTML = 'Idioma';
-            }
-        });
-    }
-
-    function editarExperiencia(id) {
-
-        $.ajax({
-            url: "/Curriculo/EditExperiencia?id=" + id,
-            dataType: 'html',
-            beforeSend: function () {
-
-            },
-            success: function (data) {
-
-                $('#modal-body').html(data);
-                $('#modal_validacao').modal('show');
-                document.getElementById("titulo-modal").innerHTML = 'Experiência Profissional';
-            }
-        });
-    }
-
-    function editarFormacao(id) {
-
-        $.ajax({
-            url: "/Curriculo/EditFormacao?id=" + id,
-            dataType: 'html',
-            beforeSend: function () {
-
-            },
-            success: function (data) {
-
-                $('#modal-body').html(data);
-                $('#modal_validacao').modal('show');
-                document.getElementById("titulo-modal").innerHTML = 'Formação Acadêmica';
-            }
-        });
-    }
-
-    function editarIdioma(id) {
-
-        $.ajax({
-            url: "/Curriculo/EditIdioma?id=" + id,
-            dataType: 'html',
-            beforeSend: function () {
-
-            },
-            success: function (data) {
-
-                $('#modal-body').html(data);
-                $('#modal_validacao').modal('show');
-                document.getElementById("titulo-modal").innerHTML = 'Idioma';
-            }
-        });
-    }
-
-</script>
+}
+<br />
+<br />

@@ -3,18 +3,18 @@
     ViewData["Title"] = "Listagem";
 }
 
-<h1>Listagem de currículos</h1>
+<link rel="stylesheet" href="~/css/Home/home-sobre.css" />
+<script src="~/js/Curriculo/index.js"></script>
+
 <br />
 <br />
-<table class="table table-responsive table-striped">
+<h1><b>Listagem de currículos</b></h1>
+<br />
+<br />
+<table class="table table-striped col-md-12">
     <tr>
         <th>Nome</th>
         <th>CPF</th>
-        <th>Endereço</th>
-        <th>Telefone</th>
-        <th>E-mail</th>
-        <th>Pretensão salarial</th>
-        <th>Cargo pretendido</th>
         <th>Ações</th>
     </tr>
     @foreach (PessoaViewModel p in Model)
@@ -22,23 +22,13 @@
         <tr>
             <td>@p.nome</td>
             <td>@p.cpf</td>
-            <td>@p.endereco</td>
-            <td>@p.telefone</td>
-            <td>@p.email</td>
-            <td>@p.pretensao_salarial</td>
-            <td>@p.cargo_pretendido</td>
             <td>
-                <a href="/curriculo/Edit?id=@p.id" class="btn btn-info">Visualizar</a>
                 <a href="/curriculo/Edit?id=@p.id" class="btn btn-info">Editar</a>
                 <a href="javascript:apagarPessoa(@p.id)" class="btn btn-danger">Apagar</a>
             </td>
         </tr>
     }
 </table>
-
-<script>
-    function apagarPessoa(id) {
-        if (confirm('Confirma a exclusão do registro?'))
-            location.href = 'curriculo/Delete?id=' + id;
-    }
-</script>
+<br />
+<br />
+<br />

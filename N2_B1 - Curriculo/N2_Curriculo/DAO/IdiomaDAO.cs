@@ -44,6 +44,12 @@ namespace N2_Curriculo.DAO
             HelperDAO.ExecutaSQL(sql, null);
         }
 
+        public void ExcluirPessoa(int id)
+        {
+            string sql = "delete idiomas where id_dados_pessoais = " + id;
+            HelperDAO.ExecutaSQL(sql, null);
+        }
+
         public IdiomaViewModel Consulta(int id)
         {
             string sql = "select * from idiomas where id = " + id;

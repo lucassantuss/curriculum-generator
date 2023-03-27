@@ -1,21 +1,25 @@
 ﻿@model FormacaoViewModel
 
+<link rel="stylesheet" href="~/css/Curriculo/modal.css" />
+
 <form action="SalvarFormacao" method="post">
     <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
+    <input type="hidden" name="id" value="@Model.id" />
+    <input type="hidden" name="id_dados_pessoais" value="@Model.id_dados_pessoais" />
 
-    <label for="instituicao" class="control-label">Instituição</label>
-    <input type="text" Name="instituicao" value="@Model.instituicao" class="form-control"/>
+    <label for="instituicao" class="control-label">Instituição</label><span id="obg"> *</span>
+    <input type="text" Name="instituicao" value="@Model.instituicao" class="form-control" required maxlength="100"/>
     <br />
-    <label for="curso" class="control-label">Curso</label>
-    <input type="text" Name="curso" value="@Model.curso" class="form-control"/>
+    <label for="curso" class="control-label">Curso</label><span id="obg"> *</span>
+    <input type="text" Name="curso" value="@Model.curso" class="form-control" required maxlength="50"/>
     <br />
-    <label for="situacao" class="control-label">Situação</label>
-    <input type="text" Name="situacao" value="@Model.situacao" class="form-control"/>
+    <label for="situacao" class="control-label">Situação</label><span id="obg"> *</span>
+    <input type="text" Name="situacao" value="@Model.situacao" class="form-control" required maxlength="20"/>
     <br />
-    <label for="data_conclusao" class="control-label">Data de Conclusão</label>
-    <input type="date" Name="data_conclusao" value="@Model.data_conclusao.ToString("yyyy-MM-dd")" class="form-control"/>
+    <label for="data_conclusao" class="control-label">Data de Conclusão</label><span id="obg"> *</span>
+    <input type="date" Name="data_conclusao" value="@Model.data_conclusao.ToString("yyyy-MM-dd")" class="form-control" required />
     <br />
     <br />
-    <input type="submit" value="Salvar" class="btn btn-success"/>
+    <input type="submit" value="Salvar" class="btn btn-success" />
     <br />
 </form>

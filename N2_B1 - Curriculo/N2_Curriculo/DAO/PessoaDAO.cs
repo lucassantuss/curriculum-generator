@@ -87,5 +87,13 @@ namespace N2_Curriculo.DAO
 
             return lista;
         }
+
+        public int ProximoId()
+        {
+            string sql = "SELECT IDENT_CURRENT('dados_pessoais') + IDENT_INCR('dados_pessoais') AS MAIOR;";
+            DataTable tabela = HelperDAO.ExecutaSelect(sql, null);
+
+            return Convert.ToInt32(tabela.Rows[0]["MAIOR"]);
+        }
     }
 }

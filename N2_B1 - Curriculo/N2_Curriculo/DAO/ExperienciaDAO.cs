@@ -12,7 +12,7 @@ namespace N2_Curriculo.DAO
     {
         private SqlParameter[] CriaParametros(ExperienciaViewModel experiencia)
         {
-            SqlParameter[] p = new SqlParameter[5];
+            SqlParameter[] p = new SqlParameter[6];
             p[0] = new SqlParameter("id", experiencia.id);
             p[1] = new SqlParameter("id_dados_pessoais", experiencia.id_dados_pessoais);
             p[2] = new SqlParameter("empresa", experiencia.empresa);
@@ -47,6 +47,12 @@ namespace N2_Curriculo.DAO
             HelperDAO.ExecutaSQL(sql, null);
         }
 
+        public void ExcluirPessoa(int id)
+        {
+            string sql = "delete experiencia_profissional where id_dados_pessoais = " + id;
+            HelperDAO.ExecutaSQL(sql, null);
+        }
+
         public ExperienciaViewModel Consulta(int id)
         {
             string sql = "select * from experiencia_profissional where id = " + id;
@@ -77,7 +83,7 @@ namespace N2_Curriculo.DAO
             e.empresa = registro["empresa"].ToString();
             e.cargo = registro["cargo"].ToString();
             e.data_inicio = Convert.ToDateTime(registro["data_inicio"]);
-            //e.data_fim = Convert.ToDateTime(registro["data_fim"]);
+            e.data_fim = Convert.ToDateTime(registro["data_fim"]);
 
             return e;
         }

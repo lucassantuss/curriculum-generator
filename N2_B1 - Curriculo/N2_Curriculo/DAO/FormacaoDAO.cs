@@ -47,6 +47,12 @@ namespace N2_Curriculo.DAO
             HelperDAO.ExecutaSQL(sql, null);
         }
 
+        public void ExcluirPessoa(int id)
+        {
+            string sql = "delete formacao_academica where id_dados_pessoais = " + id;
+            HelperDAO.ExecutaSQL(sql, null);
+        }
+
         public FormacaoViewModel Consulta(int id)
         {
             string sql = "select * from formacao_academica where id = " + id;
@@ -77,7 +83,7 @@ namespace N2_Curriculo.DAO
             f.instituicao = registro["instituicao"].ToString();
             f.curso = registro["curso"].ToString();
             f.situacao = registro["situacao"].ToString();
-            //f.data_conclusao = Convert.ToDateTime(registro["data_conclusao"]);
+            f.data_conclusao = Convert.ToDateTime(registro["data_conclusao"]);
 
             return f;
         }
