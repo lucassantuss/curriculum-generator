@@ -363,3 +363,4 @@ E:\GITHUB\N2_Curriculo\N2_B1 - Curriculo\N2_Curriculo\obj\Debug\netcoreapp3.1\Ra
 E:\GITHUB\N2_Curriculo\N2_B1 - Curriculo\N2_Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\Curriculo\_ExperienciaProfissional.cshtml.g.cs
 E:\GITHUB\N2_Curriculo\N2_B1 - Curriculo\N2_Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\Curriculo\_FormacaoAcademica.cshtml.g.cs
 E:\GITHUB\N2_Curriculo\N2_B1 - Curriculo\N2_Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\Curriculo\_Idioma.cshtml.g.cs
+E:\GITHUB\N2_Curriculo\N2_B1 - Curriculo\N2_Curriculo\obj\Debug\netcoreapp3.1\Razor\Views\Curriculo\Curriculo.cshtml.g.cs

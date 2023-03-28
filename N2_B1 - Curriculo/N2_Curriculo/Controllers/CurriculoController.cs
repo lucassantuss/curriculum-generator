@@ -31,6 +31,53 @@ namespace N2_Curriculo.Controllers
         #endregion
 
         #region Métodos - Dados Pessoais
+        public IActionResult Visualizar(int id)
+        {
+            try
+            {
+                PessoaDAO p_dao = new PessoaDAO();
+                ExperienciaDAO e_dao = new ExperienciaDAO();
+                FormacaoDAO f_dao = new FormacaoDAO();
+                IdiomaDAO i_dao = new IdiomaDAO();
+
+                PessoaViewModel pessoa = p_dao.Consulta(id);
+
+                if (pessoa != null)
+                {
+                    pessoa.experiencia_profissional = new List<ExperienciaViewModel>();
+                    pessoa.formacao_academica = new List<FormacaoViewModel>();
+                    pessoa.idioma = new List<IdiomaViewModel>();
+
+                    var listaExperiencia = e_dao.Listagem(id);
+                    var listaFormacao = f_dao.Listagem(id);
+                    var listaIdioma = i_dao.Listagem(id);
+
+                    if (listaExperiencia != null) foreach (var item in listaExperiencia)
+                    {
+                            pessoa.experiencia_profissional.Add(item);
+                    }
+                    if (listaFormacao != null) foreach (var item in listaFormacao)
+                    {
+                            pessoa.formacao_academica.Add(item);
+                    }
+                    if (listaIdioma != null) foreach (var item in listaIdioma)
+                    {
+                            pessoa.idioma.Add(item);
+                    }
+                }
+
+                if (pessoa == null)
+                    return RedirectToAction("index");
+                else
+                    return View("Curriculo", pessoa);
+            }
+            catch (Exception erro)
+            {
+                return View("error",
+                    new ErrorViewModel(erro.ToString()));
+            }
+        }
+
         /// <summary>
         /// Action responsável por direcionar para a tela de preenchimento dos Dados Pessoais (Novo Currículo)
         /// </summary>
@@ -393,7 +440,7 @@ namespace N2_Curriculo.Controllers
         /// <summary>
         /// Action responsável por inserir/alterar o idioma associado ao curriculo em questão
         /// </summary>
-        public IActionResult SalvarIdioma(IdiomaViewModel idioma,
+        public IActionResult SalvarIdioma(IdiomaViewModel idiomaSelecionado,
                     string Operacao)
         {
             try
@@ -401,11 +448,11 @@ namespace N2_Curriculo.Controllers
                 IdiomaDAO dao = new IdiomaDAO();
 
                 if (Operacao == "I")
-                    dao.Inserir(idioma);
+                    dao.Inserir(idiomaSelecionado);
                 else
-                    dao.Alterar(idioma);
+                    dao.Alterar(idiomaSelecionado);
 
-                return Redirect("/Curriculo/Edit?id=" + idioma.id_dados_pessoais);
+                return Redirect("/Curriculo/Edit?id=" + idiomaSelecionado.id_dados_pessoais);
             }
             catch (Exception erro)
             {
