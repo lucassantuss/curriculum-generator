@@ -117,7 +117,7 @@ namespace N2_Curriculo.Controllers
                 else
                     dao.Alterar(pessoa);
 
-                return RedirectToAction("Edit", new { id = pessoa.id });
+                return Redirect("/Curriculo/Edit?id=" + pessoa.id);
             }
             catch (Exception erro)
             {
@@ -216,7 +216,7 @@ namespace N2_Curriculo.Controllers
                 else
                     dao.Alterar(formacao);
 
-                return RedirectToAction("Edit", new { id = formacao.id_dados_pessoais });
+                return Redirect("/Curriculo/Edit?id=" + formacao.id_dados_pessoais);
             }
             catch (Exception erro)
             {
@@ -238,7 +238,7 @@ namespace N2_Curriculo.Controllers
 
                 dao.Excluir(id);
 
-                return RedirectToAction("Edit", new { id = formacao.id_dados_pessoais });
+                return Redirect("/Curriculo/Edit?id=" + formacao.id_dados_pessoais);
             }
             catch (Exception erro)
             {
@@ -315,7 +315,7 @@ namespace N2_Curriculo.Controllers
                 else
                     dao.Alterar(experiencia);
 
-                return RedirectToAction("Edit", new { id = experiencia.id_dados_pessoais });
+                return Redirect("/Curriculo/Edit?id=" + experiencia.id_dados_pessoais);
             }
             catch (Exception erro)
             {
@@ -337,7 +337,7 @@ namespace N2_Curriculo.Controllers
 
                 dao.Excluir(id);
 
-                return RedirectToAction("Edit", new { id = experiencia.id_dados_pessoais });
+                return Redirect("/Curriculo/Edit?id=" + experiencia.id_dados_pessoais);
             }
             catch (Exception erro)
             {
@@ -405,7 +405,7 @@ namespace N2_Curriculo.Controllers
                 else
                     dao.Alterar(idioma);
 
-                return RedirectToAction("Edit", new { id = idioma.id_dados_pessoais });
+                return Redirect("/Curriculo/Edit?id=" + idioma.id_dados_pessoais);
             }
             catch (Exception erro)
             {
@@ -427,7 +427,7 @@ namespace N2_Curriculo.Controllers
 
                 dao.Excluir(id);
 
-                return RedirectToAction("Edit", new { id = idioma.id_dados_pessoais });
+                return Redirect("/Curriculo/Edit?id=" + idioma.id_dados_pessoais);
             }
             catch (Exception erro)
             {
