@@ -10,6 +10,9 @@ namespace N2_Curriculo.DAO
 {
     public class PessoaDAO
     {
+        /// <summary>
+        /// Método que recebe os dados de PessoaViewModel e retorna um SqlParameter desses campos
+        /// </summary>
         private SqlParameter[] CriaParametros(PessoaViewModel pessoa)
         {
             SqlParameter[] p = new SqlParameter[8];
@@ -25,6 +28,9 @@ namespace N2_Curriculo.DAO
             return p;
         }
 
+        /// <summary>
+        /// Query utilizada para inserir uma nova pessoa
+        /// </summary>
         public void Inserir(PessoaViewModel pessoa)
         {
             string sql =
@@ -34,6 +40,9 @@ namespace N2_Curriculo.DAO
             HelperDAO.ExecutaSQL(sql, CriaParametros(pessoa));
         }
 
+        /// <summary>
+        /// Query utilizada para alterar uma pessoa existente
+        /// </summary>
         public void Alterar(PessoaViewModel pessoa)
         {
             string sql =
@@ -45,12 +54,18 @@ namespace N2_Curriculo.DAO
             HelperDAO.ExecutaSQL(sql, CriaParametros(pessoa));
         }
 
+        /// <summary>
+        /// Query utilizada para excluir uma pessoa existente baseado no Id da Pessoa
+        /// </summary>
         public void Excluir(int id)
         {
             string sql = "delete dados_pessoais where id = " + id;
             HelperDAO.ExecutaSQL(sql, null);
         }
 
+        /// <summary>
+        /// Query utilizada para consultar os dados de uma pessoa existente
+        /// </summary>
         public PessoaViewModel Consulta(int id)
         {
             string sql = "select * from dados_pessoais where id = " + id;
@@ -62,6 +77,9 @@ namespace N2_Curriculo.DAO
                 return MontaPessoa(tabela.Rows[0]);
         }
 
+        /// <summary>
+        /// Método responsável por converter os dados de DataRow em PessoaViewModel 
+        /// </summary>
         private PessoaViewModel MontaPessoa(DataRow registro)
         {
             PessoaViewModel p = new PessoaViewModel();
@@ -77,6 +95,9 @@ namespace N2_Curriculo.DAO
             return p;
         }
 
+        /// <summary>
+        /// Query utilizada para listar todas as pessoas existentes em um List<PessoaViewModel>
+        /// </summary>
         public List<PessoaViewModel> Listagem()
         {
             List<PessoaViewModel> lista = new List<PessoaViewModel>();
@@ -88,6 +109,9 @@ namespace N2_Curriculo.DAO
             return lista;
         }
 
+        /// <summary>
+        /// Query utilizada para verificar qual será o próximo id a ser usado na criação de uma nova pessoa
+        /// </summary>
         public int ProximoId()
         {
             string sql = "SELECT IDENT_CURRENT('dados_pessoais') + IDENT_INCR('dados_pessoais') AS MAIOR;";

@@ -10,6 +10,9 @@ namespace N2_Curriculo.DAO
 {
     public class ExperienciaDAO
     {
+        /// <summary>
+        /// Método que recebe os dados de ExperienciaViewModel e retorna um SqlParameter desses campos
+        /// </summary>
         private SqlParameter[] CriaParametros(ExperienciaViewModel experiencia)
         {
             SqlParameter[] p = new SqlParameter[6];
@@ -23,6 +26,9 @@ namespace N2_Curriculo.DAO
             return p;
         }
 
+        /// <summary>
+        /// Query utilizada para inserir uma nova experiencia profissional
+        /// </summary>
         public void Inserir(ExperienciaViewModel experiencia)
         {
             string sql =
@@ -32,6 +38,9 @@ namespace N2_Curriculo.DAO
             HelperDAO.ExecutaSQL(sql, CriaParametros(experiencia));
         }
 
+        /// <summary>
+        /// Query utilizada para alterar uma experiencia profissional existente
+        /// </summary>
         public void Alterar(ExperienciaViewModel experiencia)
         {
             string sql =
@@ -41,18 +50,27 @@ namespace N2_Curriculo.DAO
             HelperDAO.ExecutaSQL(sql, CriaParametros(experiencia));
         }
 
+        /// <summary>
+        /// Query utilizada para excluir uma experiencia profissional existente baseado no Id da Experiencia
+        /// </summary>
         public void Excluir(int id)
         {
             string sql = "delete experiencia_profissional where id = " + id;
             HelperDAO.ExecutaSQL(sql, null);
         }
 
+        /// <summary>
+        /// Query utilizada para excluir todas as experiencias profissionais relacionadas ao Id de uma determinada pessoa
+        /// </summary>
         public void ExcluirPessoa(int id)
         {
             string sql = "delete experiencia_profissional where id_dados_pessoais = " + id;
             HelperDAO.ExecutaSQL(sql, null);
         }
 
+        /// <summary>
+        /// Query utilizada para consultar os dados de uma experiencia profissional existente
+        /// </summary>
         public ExperienciaViewModel Consulta(int id)
         {
             string sql = "select * from experiencia_profissional where id = " + id;
@@ -64,6 +82,9 @@ namespace N2_Curriculo.DAO
                 return MontaExperiencia(tabela.Rows[0]);
         }
 
+        /// <summary>
+        /// Query utilizada para consultar todas as experiencias profissionais relacionadas ao Id de uma determinada pessoa
+        /// </summary>
         public ExperienciaViewModel ConsultaPessoa(int id)
         {
             string sql = "select * from experiencia_profissional where id_dados_pessoais = " + id;
@@ -75,6 +96,9 @@ namespace N2_Curriculo.DAO
                 return MontaExperiencia(tabela.Rows[0]);
         }
 
+        /// <summary>
+        /// Método responsável por converter os dados de DataRow em ExperienciaViewModel 
+        /// </summary>
         private ExperienciaViewModel MontaExperiencia(DataRow registro)
         {
             ExperienciaViewModel e = new ExperienciaViewModel();
@@ -88,6 +112,9 @@ namespace N2_Curriculo.DAO
             return e;
         }
 
+        /// <summary>
+        /// Query utilizada para listar todas as experiencias profissionais relacionadas ao Id de uma determinada pessoa em um List<ExperienciaViewModel>
+        /// </summary>
         public List<ExperienciaViewModel> Listagem(int id)
         {
             List<ExperienciaViewModel> lista = new List<ExperienciaViewModel>();

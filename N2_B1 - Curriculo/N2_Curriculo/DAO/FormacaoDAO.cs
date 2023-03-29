@@ -10,6 +10,9 @@ namespace N2_Curriculo.DAO
 {
     public class FormacaoDAO
     {
+        /// <summary>
+        /// Método que recebe os dados de FormacaoViewModel e retorna um SqlParameter desses campos
+        /// </summary>
         private SqlParameter[] CriaParametros(FormacaoViewModel formacao)
         {
             SqlParameter[] p = new SqlParameter[6];
@@ -23,6 +26,9 @@ namespace N2_Curriculo.DAO
             return p;
         }
 
+        /// <summary>
+        /// Query utilizada para inserir uma nova formação academica
+        /// </summary>
         public void Inserir(FormacaoViewModel formacao)
         {
             string sql =
@@ -32,6 +38,9 @@ namespace N2_Curriculo.DAO
             HelperDAO.ExecutaSQL(sql, CriaParametros(formacao));
         }
 
+        /// <summary>
+        /// Query utilizada para alterar uma formação academica existente
+        /// </summary>
         public void Alterar(FormacaoViewModel formacao)
         {
             string sql =
@@ -41,18 +50,27 @@ namespace N2_Curriculo.DAO
             HelperDAO.ExecutaSQL(sql, CriaParametros(formacao));
         }
 
+        /// <summary>
+        /// Query utilizada para excluir uma formação academica existente baseado no Id da Formação
+        /// </summary>
         public void Excluir(int id)
         {
             string sql = "delete formacao_academica where id = " + id;
             HelperDAO.ExecutaSQL(sql, null);
         }
 
+        /// <summary>
+        /// Query utilizada para excluir todas as formações academicas relacionadas ao Id de uma determinada pessoa
+        /// </summary>
         public void ExcluirPessoa(int id)
         {
             string sql = "delete formacao_academica where id_dados_pessoais = " + id;
             HelperDAO.ExecutaSQL(sql, null);
         }
 
+        /// <summary>
+        /// Query utilizada para consultar os dados de uma formação academica existente
+        /// </summary>
         public FormacaoViewModel Consulta(int id)
         {
             string sql = "select * from formacao_academica where id = " + id;
@@ -64,6 +82,9 @@ namespace N2_Curriculo.DAO
                 return MontaFormacao(tabela.Rows[0]);
         }
 
+        /// <summary>
+        /// Query utilizada para consultar todas as formações academicas relacionadas ao Id de uma determinada pessoa
+        /// </summary>
         public FormacaoViewModel ConsultaPessoa(int id)
         {
             string sql = "select * from formacao_academica where id_dados_pessoais = " + id;
@@ -75,6 +96,9 @@ namespace N2_Curriculo.DAO
                 return MontaFormacao(tabela.Rows[0]);
         }
 
+        /// <summary>
+        /// Método responsável por converter os dados de DataRow em FormacaoViewModel 
+        /// </summary>
         private FormacaoViewModel MontaFormacao(DataRow registro)
         {
             FormacaoViewModel f = new FormacaoViewModel();
@@ -88,6 +112,9 @@ namespace N2_Curriculo.DAO
             return f;
         }
 
+        /// <summary>
+        /// Query utilizada para listar todas as formações academicas relacionadas ao Id de uma determinada pessoa em um List<FormacaoViewModel>
+        /// </summary>
         public List<FormacaoViewModel> Listagem(int id)
         {
             List<FormacaoViewModel> lista = new List<FormacaoViewModel>();

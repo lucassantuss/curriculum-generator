@@ -10,6 +10,9 @@ namespace N2_Curriculo.DAO
 {
     public class IdiomaDAO
     {
+        /// <summary>
+        /// Método que recebe os dados de IdiomaViewModel e retorna um SqlParameter desses campos
+        /// </summary>
         private SqlParameter[] CriaParametros(IdiomaViewModel idioma)
         {
             SqlParameter[] p = new SqlParameter[4];
@@ -21,6 +24,9 @@ namespace N2_Curriculo.DAO
             return p;
         }
 
+        /// <summary>
+        /// Query utilizada para inserir um novo idioma
+        /// </summary>
         public void Inserir(IdiomaViewModel idioma)
         {
             string sql =
@@ -30,6 +36,9 @@ namespace N2_Curriculo.DAO
             HelperDAO.ExecutaSQL(sql, CriaParametros(idioma));
         }
 
+        /// <summary>
+        /// Query utilizada para alterar um idioma existente
+        /// </summary>
         public void Alterar(IdiomaViewModel idioma)
         {
             string sql =
@@ -38,18 +47,27 @@ namespace N2_Curriculo.DAO
             HelperDAO.ExecutaSQL(sql, CriaParametros(idioma));
         }
 
+        /// <summary>
+        /// Query utilizada para excluir um idioma existente baseado no Id do Idioma
+        /// </summary>
         public void Excluir(int id)
         {
             string sql = "delete idiomas where id = " + id;
             HelperDAO.ExecutaSQL(sql, null);
         }
 
+        /// <summary>
+        /// Query utilizada para excluir todos os idiomas relacionados ao Id de uma determinada pessoa
+        /// </summary>
         public void ExcluirPessoa(int id)
         {
             string sql = "delete idiomas where id_dados_pessoais = " + id;
             HelperDAO.ExecutaSQL(sql, null);
         }
 
+        /// <summary>
+        /// Query utilizada para consultar os dados de um idioma existente
+        /// </summary>
         public IdiomaViewModel Consulta(int id)
         {
             string sql = "select * from idiomas where id = " + id;
@@ -61,6 +79,9 @@ namespace N2_Curriculo.DAO
                 return MontaIdioma(tabela.Rows[0]);
         }
 
+        /// <summary>
+        /// Query utilizada para consultar todos os idiomas relacionados ao Id de uma determinada pessoa
+        /// </summary>
         public IdiomaViewModel ConsultaPessoa(int id)
         {
             string sql = "select * from idiomas where id_dados_pessoais = " + id;
@@ -72,6 +93,9 @@ namespace N2_Curriculo.DAO
                 return MontaIdioma(tabela.Rows[0]);
         }
 
+        /// <summary>
+        /// Método responsável por converter os dados de DataRow em IdiomaViewModel
+        /// </summary>
         private IdiomaViewModel MontaIdioma(DataRow registro)
         {
             IdiomaViewModel i = new IdiomaViewModel();
@@ -83,6 +107,9 @@ namespace N2_Curriculo.DAO
             return i;
         }
 
+        /// <summary>
+        /// Query utilizada para listar todos os idiomas relacionados ao Id de uma determinada pessoa em um List<IdiomaViewModel>
+        /// </summary>
         public List<IdiomaViewModel> Listagem(int id)
         {
             List<IdiomaViewModel> lista = new List<IdiomaViewModel>();

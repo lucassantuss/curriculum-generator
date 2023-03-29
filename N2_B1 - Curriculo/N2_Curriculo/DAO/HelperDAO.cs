@@ -9,6 +9,9 @@ namespace N2_Curriculo.DAO
 {
     internal static class HelperDAO
     {
+        /// <summary>
+        /// Executa a query SQL no banco de dados, usando os parametros e a instrução passada
+        /// </summary>
         public static void ExecutaSQL(
                     string sql,
                     SqlParameter[] parametros)
@@ -24,6 +27,9 @@ namespace N2_Curriculo.DAO
             }
         }
 
+        /// <summary>
+        /// Executa a query SQL no banco de dados, e retorna os dados filtrados numa DataTable
+        /// </summary>
         public static DataTable ExecutaSelect(string sql,
                                               SqlParameter[] parametros)
         {
